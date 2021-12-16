@@ -33,7 +33,6 @@ jobs:
         pytest
         
 name: Elastic Beanstalk Deployment
-  with:
     # Enter The Name of the S3 Bucket
     EB-BUCKET-NAME: elasticbeanstalk-us-east-1-312103758391
     # Enter the name of the Elastic BeanStalk Application

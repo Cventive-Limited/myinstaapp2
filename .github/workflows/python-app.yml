@@ -32,9 +32,4 @@ jobs:
       run: |
         pytest
         
-name: Elastic Beanstalk Deployment
-    EB-BUCKET-NAME: elasticbeanstalk-us-east-1-312103758391
-    APPLICATION-NAME: Myinstapp
-    EB-ENV-NAME: Myinstapp-env 
-    DEPLOY-PACKAGE-NAME: # optional
-    AWS-REGION: us-east-1d   
+

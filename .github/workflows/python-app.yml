@@ -41,9 +41,11 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v2
+    - name: Zip File 
       uses: montudor/action-zip@v1
       with:
         args: zip -qq -r deploy.zip deploy
+    - name: Upload Zip file   
       uses: actions/upload-artifact@v2
       with:
         name: deploy.zip

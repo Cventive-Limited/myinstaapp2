@@ -57,16 +57,8 @@ jobs:
       with:
         timeZone: 0
         format: 'YYYY-MM-DD-HH-mm-ss'
-        
-    - name: Run string replace
-      uses: frabert/replace-string-action@master
-      id: format-time
-      with:
-        pattern: '[:\.]+'
-        string: "${{ steps.current-time.outputs.time }}"
-        replace-with: '-'
-        flags: 'g'
-                
+      
+                  
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v19
       with:
@@ -74,6 +66,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: Myinstapp2
         environment_name: Myinstapp2-env
-        version_label: "${{ steps.time.outputs.replaced }}"
+        version_label: "${{ steps.time.outputs.time }}"
         region: us-east-1
         deployment_package: deployment.zip

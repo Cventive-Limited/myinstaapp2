@@ -41,17 +41,14 @@ jobs:
     
     - name: Checkout source code
       uses: actions/checkout@v2
-    - name: Zip File 
-    - uses: montudor/action-zip@v1
+      
+    - name: Upload build Artifact    
+      uses: actions/upload-artifact@v2.3.1
       with:
-        args: zip -qq -r deploy.zip deploy
-    - name: Upload Zip file   
-      uses: actions/upload-artifact@v2
-      with:
-        name: deploy.zip
+        name: deployment
     
     - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
+      run: zip -r deployment.zip . -x '*.git*'
     
     - name: Get Version Number
       id: version

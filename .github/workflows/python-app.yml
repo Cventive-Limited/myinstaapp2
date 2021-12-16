@@ -56,7 +56,16 @@ jobs:
       uses: nanzm/get-time-action@v1.1
       with:
         timeZone: 0
-        format: YYYY-MM-DD-HH-mm-ss 
+        format: 'YYYY-MM-DD-HH-mm-ss'
+        
+    - name: Run string replace
+      uses: frabert/replace-string-action@master
+      id: format-time
+      with:
+        pattern: '[:\.]+'
+        string: "${{ steps.current-time.outputs.time }}"
+        replace-with: '-'
+        flags: 'g'
                 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v19

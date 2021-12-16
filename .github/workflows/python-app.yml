@@ -38,6 +38,33 @@ jobs:
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
       
-    - name Publish to |
+    
+    - name: Checkout source code
+      uses: actions/checkout@v2
+      uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r deploy.zip deploy
+      uses: actions/upload-artifact@v2
+      with:
+        name: deploy.zip
+    
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+    
+    - name: Get Version Number
+      id: version
+      uses: nanzm/get-time-action@v1.1
+      with:
+        timeZone: 0
+        format: 'YYYY-MM-DD-HH-mm-ss' 
                 
-
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v19
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Myinstapp
+        environment_name: Myinstapp-env
+        version_label: "${{ steps.time.outputs.time }}"
+        region: us-east-1
+        deployment_package: deploy.zip

@@ -33,13 +33,13 @@ jobs:
         pytest
         
 name: Elastic Beanstalk Deployment
-    # Enter The Name of the S3 Bucket
+
     EB-BUCKET-NAME: elasticbeanstalk-us-east-1-312103758391
-    # Enter the name of the Elastic BeanStalk Application
+# Enter the name of the Elastic BeanStalk Application
     APPLICATION-NAME: Myinstapp
-    # Name of the Elastic beanstalk Environment
+# Name of the Elastic beanstalk Environment
     EB-ENV-NAME: Myinstapp-env 
-    # 
+# 
     DEPLOY-PACKAGE-NAME: # optional
-    # Enter the Region
+# Enter the Region
     AWS-REGION:us-east-1d   

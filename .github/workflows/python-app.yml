@@ -46,6 +46,7 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: deployment
+        path: ${{ github.workspace }}
     
     - name: Generate deployment package
       run: zip -r deployment.zip . -x '*.git*'
